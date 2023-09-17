@@ -41,7 +41,7 @@
 #define FirmwareDate          __DATE__
 #define FirmwareVersionMajor  4
 #define FirmwareVersionMinor  24      // minor version 0 to 99
-#define FirmwareVersionPatch  "s"     // for example major.minor patch: 1.3c
+#define FirmwareVersionPatch  "q"     // for example major.minor patch: 1.3c
 #define FirmwareVersionConfig 3       // internal, for tracking configuration file changes
 #define FirmwareName          "On-Step"
 #define FirmwareTime          __TIME__
@@ -56,7 +56,7 @@
 
 // Enable additional debugging and/or status messages on the specified DebugSer port
 // Note that the DebugSer port cannot be used for normal communication with OnStep
-#define DEBUG OFF             // default=OFF, use "DEBUG ON" for background errors only, use "DEBUG VERBOSE" for all errors and status messages
+#define DEBUG VERBOSE   //DJ             // default=OFF, use "DEBUG ON" for background errors only, use "DEBUG VERBOSE" for all errors and status messages
 #define DebugSer SerialA      // default=SerialA, or Serial4 for example (always 9600 baud)
 
 #include <errno.h>
@@ -504,6 +504,8 @@ void loop2() {
       delayMicroseconds(50);
       byte limit_2nd = digitalRead(LimitPin);
       if (limit_2nd == LIMIT_SENSE_STATE) {
+        VLF("MSG: Limit sense reached, guiding/tracking stopped");      //DJ
+
         // It is still low, there must be a problem
         generalError=ERR_LIMIT_SENSE;
         stopSlewingAndTracking(SS_LIMIT);

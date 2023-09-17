@@ -24,14 +24,12 @@
 #ifndef OneWirePin
   #define OneWirePin        Aux4     // Default Pin for OneWire bus (note: this pin has a 0.1uF capacitor that must be removed for OneWire to function)
 #endif
-
-//DJ A REVOIR
 #if PINMAP == MaxPCB3
-  #define AddonBootModePin   11  //  2     // ESP8266 GPIO0 (Dir2)
-  #define AddonResetPin    	 12  // Aux2     // ESP8266 RST
+  #define AddonBootModePin     2     // ESP8266 GPIO0 (Dir2)
+  #define AddonResetPin     Aux2     // ESP8266 RST
 #elif PINMAP == MaxPCB
-  #define AddonBootModePin  11	//	Aux1     // ESP8266 GPIO0 or SPI MISO/Fault
-  #define AddonResetPin     12	//	Aux2     // ESP8266 RST or SPI MISO/Fault
+  #define AddonBootModePin  Aux1     // ESP8266 GPIO0 or SPI MISO/Fault
+  #define AddonResetPin     Aux2     // ESP8266 RST or SPI MISO/Fault
 #endif
 
 // The PEC index sense is a logic level input, resets the PEC index on rising edge then waits for 60 seconds before allowing another reset
@@ -55,7 +53,7 @@
 #define Axis1_EN              14     // Enable
 #define Axis1_M0              15     // Microstep Mode 0 or SPI MOSI
 #define Axis1_M1              16     // Microstep Mode 1 or SPI SCK
-#define Axis1_M2              17     // Microstep Mode 2 or SPI CS1 or Decay Mode
+#define Axis1_M2              17     // Microstep Mode 2 or SPI CS or Decay Mode
 #define Axis1_M3            Aux1     // SPI MISO/Fault (or ESP8266 GPIO0 on MaxPCB)
 #define Axis1_STEP            19     // Step										//DJ
 #define Axis1_DIR             20     // Dir											//DJ
@@ -68,13 +66,13 @@
 #if PINMAP == MaxPCB3
   #define Axis2_M0            15     // Microstep Mode 0 or SPI MOSI
   #define Axis2_M1            16     // Microstep Mode 1 or SPI SCK
-  #define Axis2_M2             6     // Microstep Mode 2 or SPI CS2 or Decay Mode
+  #define Axis2_M2             6     // Microstep Mode 2 or SPI CS or Decay Mode
   #define Axis2_M3          Aux1     // SPI MISO
 #else
-  #define Axis2_M0             15     // Microstep Mode 0 or SPI MOSI
-  #define Axis2_M1             16     // Microstep Mode 1 or SPI SCK
+  #define Axis2_M0             8     // Microstep Mode 0 or SPI MOSI
+  #define Axis2_M1             7     // Microstep Mode 1 or SPI SCK
   #define Axis2_M2             6     // Microstep Mode 2 or SPI CS or Decay Mode
-  #define Axis2_M3          Aux1     // ESP8266 RST or SPI MISO/Fault
+  #define Axis2_M3          Aux2     // ESP8266 RST or SPI MISO/Fault
 #endif
 #define Axis2_STEP             3     // Step
 #define Axis2_DIR              2     // Dir (ESP8266 GPIO0 on MaxPCB3)
